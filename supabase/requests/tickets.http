@@ -1,0 +1,60 @@
+# Configure REST Client in Visual Studio Code:
+# Open your Visual Studio Code settings for the current workspace (Ctrl + , or Cmd + ,).
+# Add a setting to reference the configuration file:
+#   "rest-client.environmentVariables": {
+#     "$shared": {
+#         "HOST_ADDRESS_LOCAL": "http://localhost:54321/functions/v1/tickets",
+#         "HOST_ADDRESS_STAGE": "https://xxxxxxxxxx.supabase.co/functions/v1/tickets",
+#         "SUPABASE_TOKEN_LOCAL": "xxxxxxx",
+#         "SUPABASE_TOKEN_STAGE": "xxxxxxx"
+#     }
+#   }
+
+@HOST_ADDRESS = {{HOST_ADDRESS_LOCAL}}
+@SUPABASE_TOKEN = {{SUPABASE_TOKEN_LOCAL}}
+# @HOST_ADDRESS = {{HOST_ADDRESS_STAGE}}
+# @SUPABASE_TOKEN = {{SUPABASE_TOKEN_STAGE}}
+
+GET {{HOST_ADDRESS}}  HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{SUPABASE_TOKEN}}
+
+
+POST {{HOST_ADDRESS}}  HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{SUPABASE_TOKEN}}
+
+{
+    "quote_id":100,
+    "price":340,
+    "direct":true,
+    "quote_date_time":"2024-01-06 11:06:42.000 -0300",
+    "leg":[{
+        "inboundLeg":{"iataCode": "ss", "placeName": "SBP", "carrierName": "gol", "departureDate": "2024-09-07T09:30"}, 
+         "outboundLeg": {"iataCode": "ss", "placeName": "GIG", "carrierName": "gol", "departureDate": "2024-10-01T09:00"}
+    }],
+    "image":"https://images.png"
+}
+
+PUT {{HOST_ADDRESS}} HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{SUPABASE_TOKEN}}
+
+{
+    "id":6,
+    "price":31099,
+    "direct":false,
+    "leg":[{
+        "inboundLeg":{"iataCode": "ss", "placeName": "SBP", "carrierName": "gol", "departureDate": "2024-09-07T09:30"}, 
+         "outboundLeg": {"iataCode": "ss", "placeName": "GIG", "carrierName": "gol", "departureDate": "2024-10-01T09:00"}
+    }],
+    "image":"https://images.png"
+}
+
+DELETE {{HOST_ADDRESS}} HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{SUPABASE_TOKEN}}
+
+{
+    "id":5
+}

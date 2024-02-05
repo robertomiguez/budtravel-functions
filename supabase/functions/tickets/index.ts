@@ -2,15 +2,23 @@
 // https://deno.land/manual/getting_started/setup_your_environment
 // This enables autocomplete, go to definition, etc.
 
-// import { createClient, PostgrestResponse } from 'npm:@supabase/supabase-js';
+import { corsHeaders } from '../shared/cors.ts';
 import {
   createClient,
   PostgrestResponse,
 } from 'https://esm.sh/@supabase/supabase-js@2.39.2';
-import type { Ticket } from '../../types/Ticket.ts';
+import type { Ticket } from '../types/Ticket.ts';
 
 Deno.serve(async (req) => {
   try {
+    if (req.method === 'OPTIONS') {
+      // Handle CORS preflight request
+      return new Response(null, {
+        headers: corsHeaders,
+        status: 200,
+      });
+    }
+
     const url = new URL(req.url);
     const pathSegments = url.pathname.split('/').filter(Boolean).slice(1) || [];
     const supabase = createClient(
@@ -25,7 +33,17 @@ Deno.serve(async (req) => {
 
     switch (req.method) {
       case 'GET': {
-        let supabaseQuery = supabase.from('ticket').select('*');
+        let supabaseQuery = supabase.from('ticket').select(
+          `id,
+        createdAt: created_at,
+        quoteId: quote_id,
+        price,
+        direct,
+        quoteDateTime: quote_date_time,
+        outboundLeg: outbound_leg,
+        inboundLeg: inbound_leg,
+        image`
+        );
 
         // return new Response(`Hello, ${pathSegments[1]}`, { status: 200 });
 
@@ -44,8 +62,8 @@ Deno.serve(async (req) => {
           throw error;
         }
 
-        return new Response(JSON.stringify({ data }), {
-          headers: { 'Content-Type': 'application/json' },
+        return new Response(JSON.stringify(data), {
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
           status: 200,
         });
       }
@@ -90,7 +108,7 @@ Deno.serve(async (req) => {
         });
       }
       default: {
-        console.log({ error: 'Method Not Allowed' });
+        console.log({ error: 'Method Not Allowed', req: req });
         return new Response(JSON.stringify({ error: 'Method Not Allowed' }), {
           headers: { 'Content-Type': 'application/json' },
           status: 405,

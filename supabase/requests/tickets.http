@@ -29,8 +29,8 @@ Authorization: Bearer {{SUPABASE_TOKEN}}
     "price":910,
     "direct":true,
     "quote_date_time":"2024-01-20 14:19:02.000 -0300",
-    "outbound_leg":[{"iataCode": "SDU", "placeName": "Rio de Janeiro", "carrierName": "Azul", "departureDate": "2024-08-04T17:30"}], 
-    "inbound_leg":[{"iataCode": "EZE", "placeName": "Buenos Aires", "carrierName": "Azul", "departureDate": "2024-08-09T07:00"}],
+    "outbound_leg":[{"iataCode": "SDU", "placeName": "Rio de Janeiro", "carrierName": "Azul", "departureDate": "2024-04-07T11:30"}], 
+    "inbound_leg":[{"iataCode": "BPS", "placeName": "Porto Seguro", "carrierName": "Azul", "departureDate": "2024-04-19T17:00"}],
     "image":"/amsterdam-buildings-6778915_640.jpg"
 }
 

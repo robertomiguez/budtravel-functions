@@ -37,12 +37,11 @@ Deno.serve(async (req) => {
           `id,
         createdAt: created_at,
         quoteId: quote_id,
-        price,
-        direct,
         quoteDateTime: quote_date_time,
-        outboundLeg: outbound_leg,
-        inboundLeg: inbound_leg,
-        image`
+        quoteUrl: quote_url,
+        price,
+        multiCarrier: multi_carrier,
+        journeys`
         );
 
         // return new Response(`Hello, ${pathSegments[1]}`, { status: 200 });

@@ -26,12 +26,80 @@ Authorization: Bearer {{SUPABASE_TOKEN}}
 
 {
     "quote_id":103,
-    "price":910,
-    "direct":true,
-    "quote_date_time":"2024-01-20 14:19:02.000 -0300",
-    "outbound_leg":[{"iataCode": "SDU", "placeName": "Rio de Janeiro", "carrierName": "Azul", "departureDate": "2024-04-07T11:30"}], 
-    "inbound_leg":[{"iataCode": "BPS", "placeName": "Porto Seguro", "carrierName": "Azul", "departureDate": "2024-04-19T17:00"}],
-    "image":"/amsterdam-buildings-6778915_640.jpg"
+    "quote_date_time":"2024-03-15 10:37:00.000 -0300",
+    "quote_url":"https://www.voeazul.com.br/br/pt/home/selecao-voo?c[0].ds=SDU&c[0].std=06/13/2024&c[0].as=BPS&p[0].t=ADT&p[0].c=1&p[0].cp=false&f.dl=3&f.dr=3&cc=BRL",
+    "price":410,
+    "multi_carrier":false,
+    "journeys": [
+        { 
+            "carrierName": "Azul", 
+            "carrierLogo":"/azul.svg",
+            "return":false,
+            "outbound": {
+                "date": "2024-06-14T10:45",
+                "iataCode": "SDU", 
+                "placeName": "Rio de Janeiro", 
+                "stop":false
+            },
+            "inbound": {
+                "date": "2024-06-14T11:50",
+                "iataCode": "GRU", 
+                "placeName": "Sao Paulo", 
+                "stop":true
+            }
+        },
+        { 
+            "carrierName": "Azul", 
+            "carrierLogo":"/azul.svg",
+            "return":false,
+            "outbound": {
+                "date": "2024-06-14T14:00",
+                "iataCode": "GRU", 
+                "placeName": "Sao Paulo", 
+                "stop":true
+            },
+            "inbound": {
+                "date": "2024-06-14T15:20",
+                "iataCode": "CNF", 
+                "placeName": "Belo Horizonte", 
+                "stop":true
+            }
+        },    
+        { 
+            "carrierName": "Azul", 
+            "carrierLogo":"/azul.svg",
+            "return":false,
+            "outbound": {
+                 "date": "2024-06-14T16:30",
+                 "iataCode": "CNF", 
+                 "placeName": "Belo Horizonte", 
+                 "stop":true
+            },
+            "inbound": {
+                "date": "2024-06-14T18:30",
+                "iataCode": "BPS", 
+                "placeName": "Porto Seguro", 
+                "stop":false
+            }
+        },    
+        { 
+            "carrierName": "Azul", 
+            "carrierLogo":"/azul.svg",
+            "return":true,
+            "outbound": {
+                "date": "2024-06-21T11:30",
+                "iataCode": "BPS", 
+                "placeName": "Porto Seguro", 
+                "stop":false
+            },
+            "inbound": {
+                "date": "2024-06-21T13:25",
+                "iataCode": "SDU", 
+                "placeName": "Rio de Janeiro", 
+                "stop":false
+            }
+        }    
+    ] 
 }
 
 PUT {{HOST_ADDRESS}} HTTP/1.1
@@ -40,8 +108,7 @@ Authorization: Bearer {{SUPABASE_TOKEN}}
 
 {
     "id":3,
-    "price":941,
-    "direct":false
+    "link":941
 }
 
 DELETE {{HOST_ADDRESS}} HTTP/1.1
@@ -49,5 +116,6 @@ Content-Type: application/json
 Authorization: Bearer {{SUPABASE_TOKEN}}
 
 {
-    "id":5
+    "id":1
 }
+

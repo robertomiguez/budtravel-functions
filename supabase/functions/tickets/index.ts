@@ -50,8 +50,8 @@ Deno.serve(async (req) => {
           supabaseQuery = supabaseQuery.eq('id', pathSegments[1]);
         } else if (pathSegments[0] === 'iataCode') {
           supabaseQuery = supabaseQuery.contains(
-            'outbound_leg',
-            JSON.stringify([{ iataCode: pathSegments[1] }])
+            'journeys',
+            JSON.stringify([{ outbound: { iataCode: pathSegments[1] } }])
           );
         }
 
